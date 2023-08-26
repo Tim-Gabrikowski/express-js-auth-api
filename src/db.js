@@ -15,6 +15,9 @@ const connection = new Sequelize(
 		host: process.env.DB_HOST,
 		port: process.env.DB_PORT,
 		dialect: "mysql",
+		logging: (sql, timing) => {
+			logger.debug("DATABASE", sql);
+		},
 	}
 );
 
@@ -25,7 +28,7 @@ try {
 	logger.critical("DATABASE", "Unable to connect to the database: " + error);
 }
 
-class Token extends Model {}
+export class Token extends Model {}
 
 Token.init(
 	{
@@ -51,3 +54,7 @@ Token.init(
 		tableName: "tokens",
 	}
 );
+
+logger.info("DATABASE", "BEGIN SYNC");
+await connection.sync({ alter: true });
+logger.info("DATABASE", "SYNC DONE");

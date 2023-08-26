@@ -18,6 +18,9 @@ app.use(Express.json());
 // include main Router for main route
 import { mainRouter } from "./routes/main.js";
 app.use("/", mainRouter);
+// include token Router for tokens route
+import { tokenRouter } from "./routes/token.js";
+app.use("/tokens", tokenRouter);
 
 app.listen(process.env.PORT, () => {
 	logger.info(
