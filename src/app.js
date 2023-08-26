@@ -17,7 +17,7 @@ app.use(Express.json());
 
 // include main Router for main route
 import { mainRouter } from "./routes/main.js";
-app.use("", mainRouter);
+app.use("/", mainRouter);
 
 app.listen(process.env.PORT, () => {
 	logger.info(

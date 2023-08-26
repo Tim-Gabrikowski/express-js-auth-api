@@ -2,4 +2,8 @@ import { Router } from "express";
 
 const router = Router();
 
-export { router as mainRouter };
+router.get("/", (req, res) => {
+	res.send({ ok: true, method: "GET", path: "/" });
+});
+
+export const mainRouter = router;
